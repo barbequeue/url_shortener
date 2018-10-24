@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'links#index'
-  get '/' => 'links#new'
+  root 'links#new'
+  get '/all_links' => 'links#index'
   post '/' => 'links#create'
   get '/:shorthand' => 'links#show'
 

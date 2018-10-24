@@ -1,0 +1,19 @@
+<div class="w-100 new-link">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="font-weight-normal mt-3 text-center">URL-shortener</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <%= form_for @link, as: :link, url: root_path, method: :post, :html => { class: "mt-2" } do |f| %>
+                    <div class="form-group">
+                        <%= f.text_field :origin, class: "form-control", placeholder: "Put your link here..." %>
+                    </div>
+                    <%= f.submit "Create", class: "btn btn-primary d-block px-5 py-2 mx-auto mt-4" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

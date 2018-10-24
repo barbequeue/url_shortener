@@ -2,6 +2,9 @@ class LinksController < ApplicationController
 
     def index
         @links = Link.all
+    end
+
+    def new
         @link = Link.new
     end
 
@@ -11,7 +14,7 @@ class LinksController < ApplicationController
         if @link.save
             redirect_to root_path
         else
-            redirect_to 'https://google.com'
+            render 'index'
         end
     end
 

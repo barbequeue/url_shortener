@@ -2,17 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>URL-shortener</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <%= form_for @link, as: :link, url: root_path, method: :post do |f| %>
-                    <div class="form-group">
-                        <%= f.text_field :origin, class: "form-control", placeholder: "Put your link here..." %>
-                    </div>
-                    <%= f.submit "Create", class: "btn btn-primary" %>
-                <% end %>
+                <h1>All links displays here</h1>
+                <p class="text-danger">This page is temporary and will be removed</p>
             </div>
         </div>
         <div class="row">
@@ -20,8 +11,8 @@
                 <% @links.each do |l| %>
                     <div class="rounded shadow p-3">
                         <p class="m-0 mb-2"><b>ID:</b> <%= l.id %></p>
-                        <p class="m-0 mb-2"><b>Link's origin:</b> <%= l.origin %></p>
-                        <p class="m-0"><b>Short link:</b> <%= link_to "#{root_url}#{l.shorthand}", "#{root_url}#{l.shorthand}" %></p>
+                        <p class="m-0 mb-2"><b>Origin:</b> <%= l.origin %></p>
+                        <p class="m-0 mb-2"><b>Short link:</b> <%= link_to "#{root_url}#{l.shorthand}", "#{root_url}#{l.shorthand}" %></p>
                     </div>
                 <% end %>
             </div>
