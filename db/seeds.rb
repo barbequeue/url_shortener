@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Link.create( :origin => "https://www.youtube.com/watch?v=qwzQPh7dW_4", :shorthand => "aaaaaaaa" )
