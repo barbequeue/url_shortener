@@ -5,5 +5,16 @@
                 <h1>URL-shortener</h1>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <% @links.each do |l| %>
+                    <div class="rounded shadow">
+                        <p class="m-0"><%= l.id %></p>
+                        <p class="m-0"><%= l.origin %></p>
+                        <p class="m-0"><%= link_to "#{root_url}#{l.shorthand}", "#{root_url}#{l.shorthand}" %></p>
+                    </div>
+                <% end %>
+            </div>
+        </div>
     </div>
 </div>
