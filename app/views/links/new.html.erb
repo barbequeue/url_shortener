@@ -8,10 +8,20 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <%= form_for @link, as: :link, url: root_path, method: :post, :html => { class: "mt-2" } do |f| %>
+                    <%= render 'shared/error_messages' %>
                     <div class="form-group">
                         <%= f.text_field :origin, class: "form-control", placeholder: "Put your link here..." %>
                     </div>
                     <%= f.submit "Create", class: "btn btn-primary d-block px-5 py-2 mx-auto mt-4" %>
+                <% end %>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <% if @link_output.nil? %>
+                    <p>Link output is empty</p>
+                <% else %>
+                    <p><%= "#{root_url}#{@link_output.shosrthand}" %></p>
                 <% end %>
             </div>
         </div>

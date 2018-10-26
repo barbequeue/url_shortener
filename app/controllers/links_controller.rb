@@ -6,15 +6,16 @@ class LinksController < ApplicationController
 
     def new
         @link = Link.new
+        @link_output
     end
 
     def create
         @link = Link.new(link_params)
         @link.shorthand = get_shorthand
         if @link.save
-            redirect_to root_path
+            redirect_to :action => :new
         else
-            render 'index'
+            render 'new'
         end
     end
 
