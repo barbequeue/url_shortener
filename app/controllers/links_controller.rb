@@ -6,7 +6,6 @@ class LinksController < ApplicationController
 
     def new
         @link = Link.new
-        @link_output
     end
 
     def create
@@ -21,7 +20,12 @@ class LinksController < ApplicationController
 
     def show
         @link = Link.find_by_shorthand(params[:shorthand])
-        redirect_to @link.origin
+        if @link.nil?
+            flash[:danger] = "There is no link like this."
+            redirect_to root_path
+        else
+            redirect_to @link.origin
+        end
     end
 
     private
