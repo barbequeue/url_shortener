@@ -1,11 +1,12 @@
 <% if @link.errors.any? %>
-    <div id="error_explanation">
-        <div class="alert alert-danger">
-            <% @link.errors.full_messages.each do |message| %>
-                <%= message %>
-            <% end %>
-        </div>
-    </div> 
     <script>
+        $(document).ready( function() {
+            console.log("Forms errors triggered!");
+            <% @link.errors.to_h.each do |attr, err| %>
+                    $("[name='<%= (@link.class.to_s + '[' + attr.to_s + ']').downcase %>']")
+                    .addClass("is-invalid")
+                    .parent().append("<div class='invalid-feedback'><%= err.capitalize %></div>");
+            <% end %>
+        } );
     </script>
 <% end %>
