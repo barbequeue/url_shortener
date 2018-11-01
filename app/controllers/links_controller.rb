@@ -23,7 +23,7 @@ class LinksController < ApplicationController
     def show
         @link = Link.find_by_shorthand(params[:shorthand])
         if @link.nil?
-            flash[:danger] = "There is no link like this."
+            flash[:danger] = "This short link doesn't exists."
             redirect_to root_path
         else
             redirect_to @link.origin
