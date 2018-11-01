@@ -9,13 +9,15 @@ class LinksController < ApplicationController
     end
 
     def create
-        @link = Link.new(link_params)
-        @link.shorthand = get_shorthand
-        if @link.save
-            redirect_to :action => :new
-        else
-            render 'new'
+        @link = Link.find_by_origin(params[:link][:origin])
+        if @link.nil?
+            @link = Link.new(link_params)
+            if @link.valid?
+                @link.shorthand = get_shorthand
+                @link.save
+            end
         end
+        render 'new'
     end
 
     def show

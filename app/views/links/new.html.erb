@@ -12,6 +12,16 @@
                     <div class="form-group">
                         <%= f.text_field :origin, class: "form-control", placeholder: "Put your link here..." %>
                     </div>
+                    <% if !@link.shorthand.nil? %>
+                        <div class="form-group position-relative">
+                            <%= f.text_field "output", class: "form-control", placeholder: "Here is your link...", 
+                                value: "#{root_url}#{@link.shorthand}" %>
+                            <div class="icon d-flex align-items-center position-absolute h-100 px-3" 
+                                    data-toggle="tooltip" data-placement="top" title="Copy to clipboard">
+                                <%= image_tag("copy-icon.svg") %>
+                            </div>
+                        </div>
+                    <% end %>
                     <%= f.submit "Create", class: "btn btn-primary d-block px-5 py-2 mx-auto mt-4" %>
                 <% end %>
             </div>
