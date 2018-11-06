@@ -2,19 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="font-weight-normal my-3 text-center">URL-shortener</h1>
+                <h1 class="font-weight-normal my-4 text-center">URL-shortener</h1>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
                 <%= form_for @link, as: :link, url: root_path, method: :post, :html => { class: "mt-2" } do |f| %>
                     <%= render 'shared/error_messages' %>
-                    <div class="form-group">
-                        <%= f.text_field :origin, class: "form-control", placeholder: "Put your link here..." %>
+                    <div class="form-group mb-4">
+                        <%= f.text_field :origin, class: "form-control px-0", placeholder: "Put your link here..." %>
+                        <small id="link_help" class="form-text text-muted">You can also put your short link to get it's original link</small>
                     </div>
                     <% if !@link.shorthand.nil? %>
                         <div class="input-group">
-                            <%= f.text_field "output", class: "form-control", placeholder: "Here is your link...", 
+                            <%= f.text_field "output", class: "form-control px-0", placeholder: "Here is your link...", 
                                 value: "#{root_url}#{@link.shorthand}" %>
                             <div class="input-group-append icon" data-toggle="tooltip" data-placement="top" title="Copy to clipboard">
                                 <span class="input-group-text">
@@ -23,7 +24,7 @@
                             </div>
                         </div>
                     <% end %>
-                    <%= f.submit "Create", class: "btn btn-primary d-block px-5 py-2 mx-auto mt-4" %>
+                    <%= f.submit "Create", class: "btn btn-outline-dark d-block px-5 py-2 mx-auto mt-5" %>
                 <% end %>
             </div>
         </div>

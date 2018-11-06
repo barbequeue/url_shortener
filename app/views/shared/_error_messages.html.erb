@@ -1,7 +1,6 @@
 <% if @link.errors.any? %>
     <script>
         $(document).ready( function() {
-            console.log("Forms errors triggered!");
             <% @link.errors.to_h.each do |attr, err| %>
                 $("[name='<%= (@link.class.to_s + '[' + attr.to_s + ']').downcase %>']")
                 .addClass("is-invalid")

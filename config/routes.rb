@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/all_links' => 'links#index'
   post '/' => 'links#create'
   get '/:shorthand' => 'links#show'
+  delete '/:id' => 'links#destroy'
 
   get '*path' => redirect('/')
 

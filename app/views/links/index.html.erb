@@ -13,6 +13,8 @@
                         <p class="m-0 mb-2"><b>ID:</b> <%= l.id %></p>
                         <p class="m-0 mb-2"><b>Origin:</b> <%= l.origin %></p>
                         <p class="m-0 mb-2"><b>Short link:</b> <%= link_to "#{root_url}#{l.shorthand}", "#{root_url}#{l.shorthand}" %></p>
+                        <p class="m-0 mb-2"><b>Created At:</b> <%= l.created_at.in_time_zone(2).strftime("%d.%m.%Y %H:%M") %></p>
+                        <%= link_to "delete", "/#{l.id}", method: :delete %>
                     </div>
                 <% end %>
             </div>
