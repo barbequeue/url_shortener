@@ -17,7 +17,16 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 # Use bootstrap to build pages
 gem 'bootstrap'
+# Additional gem to bootstrap
 gem 'jquery-rails'
+
+# Use rest-client to make request for and URL
+gem 'rest-client'
+# Additionall gems to rest-client
+gem 'mime-types'
+gem 'netrc'
+gem 'http-accept'
+gem 'http-cookie'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
