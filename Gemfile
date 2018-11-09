@@ -22,11 +22,6 @@ gem 'jquery-rails'
 
 # Use rest-client to make request for and URL
 gem 'rest-client'
-# Additionall gems to rest-client
-gem 'mime-types'
-gem 'netrc'
-gem 'http-accept'
-gem 'http-cookie'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
