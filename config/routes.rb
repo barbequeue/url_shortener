@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'links#new'
-  get '/all_links' => 'links#index'
   post '/' => 'links#create'
   get '/:shorthand' => 'links#show'
   delete '/:id' => 'links#destroy'

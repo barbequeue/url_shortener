@@ -1,0 +1,19 @@
+<%= form_for @link, url: root_url, method: :post, :html => { class: "mt-4" } do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="form-group mb-3">
+        <%= f.text_field :origin, class: "form-control px-0", placeholder: "Put your link here..." %>
+        <small id="link_help" class="form-text text-muted">You can also put your short link to get it's original link</small>
+    </div>
+    <% if @link.shorthand %>
+        <div class="input-group">
+            <%= f.text_field "output", class: "form-control px-0", placeholder: "Here is your link...", 
+                value: "#{root_url}#{@link.shorthand}" %>
+            <div class="input-group-append icon" data-toggle="tooltip" data-placement="top" title="Copy to clipboard">
+                <span class="input-group-text">
+                    <%= image_tag("copy-icon.svg") %>
+                </span>
+            </div>
+        </div>
+    <% end %>
+    <%= f.submit "Create", class: "btn btn-outline-dark d-block mx-auto px-5 py-2 mt-5" %>
+<% end %>
