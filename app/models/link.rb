@@ -3,8 +3,12 @@ class Link < ApplicationRecord
     validates :origin, presence: true
 
     before_create do
-        give_shorthand if self.shorthand.nil?
+        self.shorthand = Link.give_shorthand if shorthand.nil?
     end 
+
+    def self.give_shorthand
+        SecureRandom.urlsafe_base64(6, false)
+    end
 
     private
 
@@ -13,10 +17,4 @@ class Link < ApplicationRecord
         rescue StandardError => err
             errors.add( :origin, err.to_s )
         end
-
-        def give_shorthand
-            symbs = [('a'..'z'), ('A'..'Z'), (0..9)].map(&:to_a).flatten
-            self.shorthand = (0..7).map { symbs.sample }.join
-        end
-       
 end

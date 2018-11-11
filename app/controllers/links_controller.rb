@@ -1,8 +1,5 @@
 class LinksController < ApplicationController
-
-    def index
-        @links = Link.all
-    end
+    before_action :set_cookies, :find_session_links, only: [:new, :create]
 
     def new
         @link = Link.new
@@ -11,7 +8,7 @@ class LinksController < ApplicationController
     def create
         @link = Link.new(link_params)
         @link.validate
-        @link = Link.find_or_create_by( :origin => @link.origin )
+        @link = Link.find_or_create_by(:origin => @link.origin, :session => cookies.signed[:session])
         render 'new'
     end
 
@@ -25,13 +22,22 @@ class LinksController < ApplicationController
     def destroy
         @link = Link.find(params[:id])
         @link.destroy
-        redirect_to all_links_path
+        redirect_to root_path
     end
 
     private
 
         def link_params
             params.require(:link).permit(:origin)
+        end
+
+        def set_cookies
+            cookies.signed.permanent[:session] = Link.give_shorthand unless cookies.signed[:session]
+            @cookies = cookies
+        end
+
+        def find_session_links
+            @links = Link.where(session: cookies.signed[:session])
         end
 
 end
