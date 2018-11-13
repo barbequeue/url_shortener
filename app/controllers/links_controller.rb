@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
-    before_action :set_cookies, :find_session_links, only: [:new, :create]
+    before_action :set_cookies, :find_session_links, only: [:index, :create]
 
-    def new
+    def index 
         @link = Link.new
     end
 
@@ -9,7 +9,7 @@ class LinksController < ApplicationController
         @link = Link.new(link_params)
         @link.validate
         @link = Link.find_or_create_by(:origin => @link.origin, :session => cookies.signed[:session])
-        render 'new'
+        render :index
     end
 
     def show
@@ -33,7 +33,6 @@ class LinksController < ApplicationController
 
         def set_cookies
             cookies.signed.permanent[:session] = Link.give_shorthand unless cookies.signed[:session]
-            @cookies = cookies
         end
 
         def find_session_links
