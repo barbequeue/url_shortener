@@ -1,6 +1,4 @@
 class Link < ApplicationRecord
-  require 'addressable/uri'
-
   belongs_to :user
 
   validate :origin_must_be_valid_link
@@ -21,7 +19,7 @@ class Link < ApplicationRecord
   private
 
   def origin_must_be_valid_link
-      self.origin = RestClient.get( Addressable::URI.parse(origin).normalize.to_str ).request.url
+      self.origin = RestClient.get( origin ).request.url
   rescue StandardError
     errors.add(:origin, 'invalid link!')
   end
