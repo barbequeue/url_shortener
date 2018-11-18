@@ -1,22 +1,15 @@
 <h3 class="text-center mb-0 mt-5">Your recent links</h2>
 <p class="text-center mb-4">* These are saved in cookies. Be careful cleaning it</p>
-<table class="table mb-0">
+<table class="table small mb-0">
     <thead>
         <tr>
-            <th></th>
-            <th scope="col">Full</th>
+            <th class="d-none d-md-table-cell"></th>
+            <th class="d-none d-sm-table-cell" scope="col">Full</th>
             <th scope="col">Short</th>
-            <th></th>
+            <th class="d-none d-md-table-cell"></th>
         </tr>
     </thead>
     <tbody>
-        <% @links.each do |l| %>
-            <tr>
-                <td><%= l.created_at.strftime('%d.%m.%Y') %></td>
-                <td><%= l.origin %></td>
-                <td><%= "#{root_url}#{l.shorthand}" %></td>
-                <td><%= link_to 'delete', "/#{l.id}", method: :delete %>
-            </tr>
-        <% end %>
+        <%= render partial: 'link', collection: @links %> 
     </tbody>
 </table>

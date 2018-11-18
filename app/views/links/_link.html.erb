@@ -1,0 +1,6 @@
+<tr>
+    <td class="text-muted d-none d-md-table-cell"><%= date_word(link.created_at.to_date) %></td>
+    <td class="d-none d-sm-table-cell"><%= link_to link.origin, link.origin %></td>
+    <td><%= link_to "#{root_url}#{link.shorthand}", "#{root_url}#{link.shorthand}" %></td>
+    <td class="d-none d-md-table-cell"><%= link_to 'delete', "/#{link.id}", method: :delete %>
+</tr>
