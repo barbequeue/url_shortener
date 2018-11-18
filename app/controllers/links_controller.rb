@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_user, :find_user_links, only: [:index, :create]
+  before_action :set_user,  only: [:index, :create]
   before_action :save_user, only: [:index]
 
   def index
@@ -9,8 +9,7 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.validate
-    @link = Link.find_or_create_by(origin: @link.origin,
-                                   session: @user.session_id)
+    @link = @user.links.find_or_create_by(origin: @link.origin)
     render :index
   end
 
@@ -34,15 +33,10 @@ class LinksController < ApplicationController
   end
 
   def set_user
-    @user = User.find_or_create_by(session_id: cookies.signed[:session])
-    @session = cookies.signed[:session]
+    @user = User.find_or_create_by(id: cookies.signed[:user_id])
   end
 
   def save_user
-    cookies.signed.permanent[:session] = @user.session_id unless cookies.signed[:session]
-  end
-
-  def find_user_links
-    @links = Link.where(session: @user.session_id)
+    cookies.signed.permanent[:user_id] = @user.id unless cookies.signed[:user_id]
   end
 end

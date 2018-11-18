@@ -1,20 +1,23 @@
 class Link < ApplicationRecord
-    validate :origin_must_be_valid_link
-    validates :origin, presence: true
+  belongs_to :user
 
-    before_create do
-        self.shorthand = Link.give_shorthand if shorthand.nil?
-    end 
+  validate :origin_must_be_valid_link
+  validates :origin, presence: true
+  validates :user_id, presence: true
 
-    def self.give_shorthand
-        SecureRandom.urlsafe_base64(6, false)
-    end
+  before_create do
+    self.shorthand = Link.give_shorthand if shorthand.nil?
+  end
 
-    private
+  def self.give_shorthand
+    SecureRandom.urlsafe_base64(6, false)
+  end
 
-        def origin_must_be_valid_link
-            self.origin = RestClient.get(origin).request.url
-        rescue StandardError => err
-            errors.add( :origin, err.to_s )
-        end
+  private
+
+  def origin_must_be_valid_link
+    self.origin = RestClient.get(origin).request.url
+  rescue StandardError => err
+    errors.add(:origin, err.to_s)
+  end
 end

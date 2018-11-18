@@ -3,7 +3,9 @@
 one:
   origin: MyString
   shorthand: MyString
+  user: one
 
 two:
   origin: MyString
   shorthand: MyString
+  user: two
