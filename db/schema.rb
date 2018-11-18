@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_114008) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["shorthand"], name: "index_links_on_shorthand", unique: true
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_114008) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
   add_foreign_key "links", "users"

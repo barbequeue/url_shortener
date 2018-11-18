@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_user,  only: [:index, :create]
+  before_action :require_user,  only: [:index, :create]
   before_action :save_user, only: [:index]
 
   def index
@@ -9,7 +9,8 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.validate
-    @link = @user.links.find_or_create_by(origin: @link.origin)
+    @link = Link.find_or_create_by(origin: @link.origin,
+                                   user_id: @user.id)
     render :index
   end
 
@@ -32,11 +33,11 @@ class LinksController < ApplicationController
     params.require(:link).permit(:origin)
   end
 
-  def set_user
-    @user = User.find_or_create_by(id: cookies.signed[:user_id])
+  def require_user
+    @user = User.find_or_create_by(name: cookies.signed[:user_name])
   end
 
   def save_user
-    cookies.signed.permanent[:user_id] = @user.id unless cookies.signed[:user_id]
+    cookies.signed.permanent[:user_name] = @user.name unless cookies.signed[:user_name]
   end
 end
