@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <%= render 'table' unless @user.links.empty? %>
+                <%= render 'table' if Link.where(token: @token).any? %>
             </div>
         </div>
     </div>

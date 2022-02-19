@@ -1,8 +1,7 @@
 class Link < ApplicationRecord
-  belongs_to :user
-
   validate :origin_must_be_valid_link
   validates :origin, presence: true
+  validates :token, presence: true
   validates :shorthand, uniqueness: true
 
   before_create do
