@@ -10,6 +10,8 @@
         </tr>
     </thead>
     <tbody>
-        <%= render partial: 'link', collection: Link.where(token: @token) %>
+        <% Link.where(token: @token).each do |link| %>
+          <%= render 'link', link: LinkPresenter.new(link) %>
+        <% end %>
     </tbody>
 </table>
